@@ -62,13 +62,11 @@ class ControladorCategoria extends Controller
      */
     public function edit($id)
     {
-        $listCategorias = Categoria::all();
-        return view('editarCategoria')->with(compact('listCategorias'));
-
         $categorias = Categoria::find($id);
-        if (isset($categorias)){
-            $categorias->update();
+        if (isset($categorias)) {
+            return view('editarCategoria')->with(compact('categorias'));
         }
+        return redirect('/categorias');
     }
 
     /**
@@ -80,7 +78,11 @@ class ControladorCategoria extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categorias = Categoria::find($id);
+        if(isset($categorias)){
+            $categorias->nome = $request->input('nomeCategoria');
+            $categorias->save();
+        }
     }
 
     /**

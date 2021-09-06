@@ -27,3 +27,4 @@ Route::get('categorias/novo',[ControladorCategoria::class, 'create']);
 Route::post('categorias',[ControladorCategoria::class,'store']);
 Route::get('categorias/remover/{id}',[ControladorCategoria::class,'destroy']);
 Route::get('categorias/editar/{id}',[ControladorCategoria::class,'edit']);
+Route::post('categorias/{id}',[ControladorCategoria::class,'update']);

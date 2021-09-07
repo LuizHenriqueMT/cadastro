@@ -9,7 +9,7 @@
                     <thead>
                         <tr>
                             <th>Código</th>
-                            <th>Nome da Categória</th>
+                            <th>Nome da Categoria</th>
                             <th>Ações</th>
                         </tr>
                     </thead>

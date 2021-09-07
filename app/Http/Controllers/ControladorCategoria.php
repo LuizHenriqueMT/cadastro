@@ -79,10 +79,11 @@ class ControladorCategoria extends Controller
     public function update(Request $request, $id)
     {
         $categorias = Categoria::find($id);
-        if(isset($categorias)){
+        if (isset($categorias)) {
             $categorias->nome = $request->input('nomeCategoria');
             $categorias->save();
         }
+        return redirect('/categorias');
     }
 
     /**

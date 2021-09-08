@@ -1,4 +1,4 @@
-@extends('layout.app', ["current"=>"produtos.novoProduto"])
+@extends('layout.app', ["current"=>"novoProduto"])
 
 @section('body')
     <div class="card border">

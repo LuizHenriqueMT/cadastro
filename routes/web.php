@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('produtos',[ControladorProduto::class,'index']);
+Route::get('produtos/novo',[ControladorProduto::class,'create']);
+Route::post('produtos',[ControladorProduto::class,'store']);
 
 Route::get('categorias',[ControladorCategoria::class, 'index']);
 Route::get('categorias/novo',[ControladorCategoria::class, 'create']);

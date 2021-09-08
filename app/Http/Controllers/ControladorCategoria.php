@@ -15,7 +15,7 @@ class ControladorCategoria extends Controller
     public function index()
     {
         $listCategorias = Categoria::all();
-        return view ('categorias')
+        return view ('categorias.categorias')
             ->with(compact('listCategorias'));
     }
 
@@ -26,7 +26,7 @@ class ControladorCategoria extends Controller
      */
     public function create()
     {
-        return view ('novacategoria');
+        return view ('categorias.novacategoria');
     }
 
     /**
@@ -64,7 +64,7 @@ class ControladorCategoria extends Controller
     {
         $categorias = Categoria::find($id);
         if (isset($categorias)) {
-            return view('editarCategoria')->with(compact('categorias'));
+            return view('categorias.editarCategoria')->with(compact('categorias'));
         }
         return redirect('/categorias');
     }

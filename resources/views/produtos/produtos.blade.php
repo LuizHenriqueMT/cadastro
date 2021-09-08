@@ -4,7 +4,6 @@
     <div class="card border">
         <div class="card-body">
             <h5 class="card-title">Cadastro de Produtos</h5>
-            @if(count($listProdutos) > 0)
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -17,27 +16,65 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($listProdutos as $listProdutos)
-                        <tr>
-                            <td>{{ $listProdutos->id }}</td>
-                            <td>{{ $listProdutos->nome }}</td>
-                            <td>{{ $listProdutos->estoque }}</td>
-                            <td>{{ $listProdutos->preco }}</td>
-                            <td>{{ $listProdutos->categoria_id }}</td>
-                            <td>
-                                <a href="/categorias/editar/{{$listProdutos->id}}" class="btn btn-sm btn-primary">Editar</a>
-                                <a href="/categorias/remover/{{$listProdutos->id}}" class="btn btn-sm btn-danger">Excluir</a>
-                            </td>
-                        </tr>
-                    @endforeach
+
                     </tbody>
                 </table>
-            @else
-                <h6 class="card-text">Não existe produtos para serem exibidos.</h6>
-            @endif
         </div>
         <div class="card-footer">
-            <a href="/produtos/novo" class="btn btn-sm btn-primary" role="button">Novo Produto</a>
+            <a class="btn btn-sm btn-primary" role="button">Novo Produto</a>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="dlgProdutos">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" id="formProduto">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Novo Produto</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" id="id" class="form-control">
+
+                        <div class="form-group">
+                            <label for="nomeProduto" class="control-label">Nome do Produtos</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nomeProduto" placeholder="Nome do Produto">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estoqueProduto" class="control-label">Estoque do Produtos</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="estoqueProduto" placeholder="Estoque do Produto">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="precoProduto" class="control-label">Preço do Produtos</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="precoProduto" placeholder="Preço do Produto">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="categoriaProduto" class="control-label">Categoria do Produtos</label>
+                            <div class="input-group">
+                                <select class="form-control" id="categoriaProduto">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
 @endsection

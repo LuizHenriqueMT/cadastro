@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('produtos',[ControladorProduto::class,'index']);
+Route::get('produtos',[ControladorProduto::class,'indexView']);
 Route::get('produtos/novo',[ControladorProduto::class,'create']);
 Route::post('produtos',[ControladorProduto::class,'store']);
 

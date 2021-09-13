@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ControladorCategoria;
+use App\Http\Controllers\ControladorProduto;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/categorias',[ControladorCategoria::class,'indexJson']);
+
+Route::get('/produtos',[ControladorProduto::class,'index']);
+Route::post('/produtos',[ControladorProduto::class,'store']);
+Route::delete('/produtos/{id}',[ControladorProduto::class,'destroy']);
+Route::PUT('/produtos/{id}',[ControladorProduto::class,'update']);
+Route::GET('/produtos/{id}',[ControladorProduto::class,'show']);

@@ -8,17 +8,18 @@ use Illuminate\Http\Request;
 
 class ControladorProduto extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function indexView()
     {
         $listCategorias = Categoria::all();
         $listProdutos = Produto::all();
         return view('produtos.produtos')
             ->with(compact(['listProdutos','listCategorias']));
+    }
+
+    public function index()
+    {
+        $listProdutos = Produto::all();
+        return $listProdutos->toJson();
     }
 
     /**
@@ -47,7 +48,7 @@ class ControladorProduto extends Controller
         $produtos->preco = $request->input('precoProduto');
         $produtos->categoria_id = $request->input('categoriaProduto');
         $produtos->save();
-        return redirect('/produtos');
+        return json_encode($produtos);
     }
 
     /**
@@ -58,7 +59,11 @@ class ControladorProduto extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produto::find($id);
+        if (isset($produto)){
+            return json_encode($produto);
+        }
+        return response('Produto não encontrado.',404);
     }
 
     /**
@@ -81,7 +86,17 @@ class ControladorProduto extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produto = Produto::find($id);
+        if(isset($produto)){
+            $produto->nome = $request->input('nomeProduto');
+            $produto->estoque = $request->input('estoqueProduto');
+            $produto->preco = $request->input('precoProduto');
+            $produto->categoria_id = $request->input('categoriaProduto');
+            $produto->save();
+            return json_encode($produto);
+        }
+        return response('Produto não encontrado.',404);
+
     }
 
     /**
@@ -92,6 +107,11 @@ class ControladorProduto extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produto = Produto::find($id);
+        if (isset($produto)){
+            $produto->delete();
+            return response('OK',200);
+        }
+        return response('Produto não encontrado',404    );
     }
 }

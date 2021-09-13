@@ -187,10 +187,23 @@
             $.ajax({
                 type: "PUT",
                 url: "/api/produtos/" + produto.id,
-                data: produto,
                 context: this,
-                success: function(){
-                    console.log('salvou');
+                data: produto,
+                success: function(data){
+                    linhasUpdate = $('#tabelaProdutos>tbody>tr');
+                    produto = JSON.parse(data);
+
+                    atualizar = linhasUpdate.filter(function( i, elemento ){
+                        return elemento.cells[0].textContent == produto.id;
+                    });
+
+                    if (atualizar){
+                        atualizar[0].cells[0].textContent = produto.id;
+                        atualizar[0].cells[1].textContent = produto.nome;
+                        atualizar[0].cells[2].textContent = produto.estoque;
+                        atualizar[0].cells[3].textContent = produto.preco;
+                        atualizar[0].cells[4].textContent = produto.categoria_id;
+                    }
                 },
                 error: function(error){
                     console.log (error);
